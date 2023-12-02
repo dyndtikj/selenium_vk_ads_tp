@@ -4,3 +4,4 @@ files/userdata
 idea/
 .pytest_cache/
 .idea/
+__pychache__/
