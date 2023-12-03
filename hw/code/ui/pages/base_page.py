@@ -4,6 +4,7 @@ import time
 import allure
 from selenium.common import StaleElementReferenceException
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support.ui import Select
 import re
@@ -45,7 +46,7 @@ class BasePage(object):
     
     def wait_for_openning(self, url, timeout=30):
         return self.wait(timeout).until(EC.url_to_be(url))
-    
+
     def has_object(self, locator):
         try:
             self.find(locator)
@@ -78,10 +79,10 @@ class BasePage(object):
         select_element = self.find(locator)
         select = Select(select_element)
         select.select_by_value(value)
-    
+
     def urls_are_equal(self):
         return re.match(self.url, self.driver.current_url)
-    
+
     @classmethod
     def convert_regexp_url(cls):
         return cls.url[1:-3].replace('\\', '')
