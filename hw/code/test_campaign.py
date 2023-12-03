@@ -1,6 +1,6 @@
 from base import BaseCase
 from ui.fixtures import *
-from ui.pages.campaign_page import CampaignPage
+from ui.pages.campaign_page import CampaignPage, GroupPage, AdvertisementPage
 import utuls
 
 
@@ -29,7 +29,7 @@ class TestCampaign(BaseCase):
         campaign_page = CampaignPage(self.driver)
         data = self.get_campaign_data(repo_root)
 
-        campaign_page.create_campaing(data)
+        campaign_page.create_campaign(data)
         campaign_name = f'Кампания {utuls.get_today()}'
         ind, _ = campaign_page.find_ind_campaign_by_name(campaign_name)
         assert ind != -1
@@ -41,11 +41,25 @@ class TestCampaign(BaseCase):
         campaign_page = CampaignPage(self.driver)
         data = self.get_campaign_data(repo_root)
 
-        campaign_page.create_campaing(data)
+        campaign_page.create_campaign(data)
         campaign_name = f'Кампания {utuls.get_today()}'
 
         campaign_page.delete_campaign(campaign_name)
         self.driver.refresh()
         ind, _ = campaign_page.find_ind_campaign_by_name(campaign_name)
         assert ind == -1
+
+    @pytest.mark.parametrize(
+        'to_section, page',
+        [
+            pytest.param('campaigns', CampaignPage),
+            pytest.param('groups', GroupPage),
+            pytest.param('ads', AdvertisementPage),
+        ]
+    )
+    @allure.story('Open section {to_section}')
+    def test_open_section(self, to_section, page):
+        campaign_page = CampaignPage(self.driver)
+        campaign_page.open_section(to_section)
+        assert page(self.driver).is_opened()
 

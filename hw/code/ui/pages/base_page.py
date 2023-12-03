@@ -8,6 +8,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support.ui import Select
 import re
 from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.common.action_chains import ActionChains
 
 from ui.locators import basic_locators
 
@@ -21,10 +22,6 @@ class PageNotOpenedExeption(Exception):
 class BasePage(object):
     url = None
     locators = basic_locators.BasePageLocators
-
-    def urls_are_equal(self):
-        return re.match(self.url, self.driver.current_url)
-
 
     def __init__(self, driver):
         self.driver = driver
@@ -45,6 +42,9 @@ class BasePage(object):
         if timeout is None:
             timeout = 5
         return WebDriverWait(obj, timeout=timeout)
+    
+    def wait_for_openning(self, url, timeout=30):
+        return self.wait(timeout).until(EC.url_to_be(url))
     
     def has_object(self, locator):
         try:
@@ -78,6 +78,13 @@ class BasePage(object):
         select_element = self.find(locator)
         select = Select(select_element)
         select.select_by_value(value)
+    
+    def urls_are_equal(self):
+        return re.match(self.url, self.driver.current_url)
+    
+    @classmethod
+    def convert_regexp_url(cls):
+        return cls.url[1:-3].replace('\\', '')
 
     @allure.step('Clicking on {locator}')
     def click(self, locator, timeout=5, obj=None):
@@ -91,14 +98,25 @@ class BasePage(object):
                 if i == CLICK_RETRY - 1:
                     raise
 
+    @allure.step('Hovering and clicking on {locator}')
+    def hover_and_click(self, locator, timeout=5, obj=None):
+        a = ActionChains(self.driver)
+        for i in range(CLICK_RETRY):
+            try:
+                elem = self.find(locator, timeout=timeout, obj=obj)
+                a.move_to_element(elem).click().perform()
+                return elem
+            except StaleElementReferenceException:
+                if i == CLICK_RETRY - 1:
+                    raise
 
-class NoNavbarSection:
+
+class NoNavbarSection(Exception):
     pass
 
 
 class BasePageAuthorized(BasePage):
     url = None
-    navbar = None
     locators = basic_locators.BasePageAuthorizedLocators
     navbar = {
         'campaigns': locators.CAMPAIGN_LOCATOR,
@@ -111,8 +129,8 @@ class BasePageAuthorized(BasePage):
         'settings': locators.SETTINGS_LOCATOR
     }
 
-    def move_to(self, section_name):
-        locator = self.navbar.get(section_name, None)
+    def move_to(self, section_name, sections=navbar):
+        locator = sections.get(section_name, None)
 
         if locator is not None:
             self.click(locator)

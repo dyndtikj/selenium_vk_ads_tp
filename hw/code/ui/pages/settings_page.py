@@ -8,6 +8,12 @@ class SettingsPage(BasePageAuthorized):
     url = r'^https:\/\/ads\.vk\.com\/hq\/settings.*$'
 
     locators = basic_locators.SettingsLocators
+    sections = {
+        'common': locators.COMMON_SECTION_LOCATOR,
+        'notifications': locators.NOTIFICATIONS_SECTION_LOCATOR,
+        'access': locators.ACCESS_SECTION_LOCATOR,
+        'logs': locators.LOGS_SECTION_LOCATOR,
+    }
 
     @allure.step("Deleting account")
     def delete_account(self):
@@ -16,11 +22,40 @@ class SettingsPage(BasePageAuthorized):
         self.click(self.locators.CONFIRM_DELETE_ACCOUNT, obj=modal_window)
 
         return LoginPage(self.driver)
+    
+    @allure.step("Editing account")
+    def edit_account_info(self, data):
+        self.fill_field(self.locators.PHONE_LOCATOR, data['phone'])
+        self.fill_field(self.locators.FIO_LOCATOR, data['fio'])
+        self.fill_field(self.locators.INN_LOCATOR, data['inn'])
+        self.click(self.locators.SAVE_BUTTON_LOCATOR)
 
-    # def get_bio(self):
-    #     result = self.find(self.locators.BIO_LOCATOR)
-    #     return result.get_attribute('value')
+    @allure.step("Getting account")
+    def get_account_info(self):
+        return {
+            'phone': self.find(self.locators.PHONE_LOCATOR).get_attribute('value'),
+            'fio': self.find(self.locators.FIO_LOCATOR).get_attribute('value'),
+            'inn': self.find(self.locators.INN_LOCATOR).get_attribute('value'),
+        }
+    
+    @allure.step("Opening section {section_name}")
+    def open_section(self, section_name):
+        super().move_to(section_name, sections=self.sections)
 
-    # def edit_bio(self, new_bio):
-    #     self.fill_field(self.locators.BIO_LOCATOR, new_bio)
-    #     self.click(self.locators.SETTING_SUBMIT_LOCATOR)
+
+class SettingsNotificationsPage(SettingsPage):
+    url = r'^https:\/\/ads\.vk\.com\/hq\/settings\/notifications.*$'
+
+    locators = basic_locators.SettingsNotificationsLocators
+
+
+class SettingsAccessPage(SettingsPage):
+    url = r'^https:\/\/ads\.vk\.com\/hq\/settings\/access.*$'
+
+    locators = basic_locators.SettingsAccessLocators
+
+
+class SettingsLogsPage(SettingsPage):
+    url = r'^https:\/\/ads\.vk\.com\/hq\/settings\/logs.*$'
+
+    locators = basic_locators.SettingsLogsLocators

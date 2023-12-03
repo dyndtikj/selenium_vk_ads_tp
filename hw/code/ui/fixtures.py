@@ -4,7 +4,6 @@ import allure
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
 
 from ui.pages.base_page import PageNotOpenedExeption
 from ui.pages.login_page import LoginPage

@@ -3,7 +3,7 @@ import pytest
 from ui.pages.registration_page import RegistrationPage
 from ui.pages.login_page import LoginPage
 from ui.pages.settings_page import SettingsPage
-from ui.pages.campaign_page import CampaignPage
+from ui.pages.base_page import PageNotOpenedExeption
 
 
 CLICK_RETRY = 3
@@ -23,10 +23,14 @@ class BaseCase:
         if self.authorize:
             with allure.step("login"):
                 login_page = LoginPage(self.driver)
-                email, password = credentials
 
-                registration_page = login_page.login(email, password)
-                assert registration_page.is_opened()
+                try:
+                    login_page.login(*credentials)
+                except PageNotOpenedExeption:
+                    if 'login?&fail=1' in driver.current_url:
+                        login_page.confirm_login(*credentials)
+                    else:
+                        raise
 
         if self.cabinet_created:
             self.campaign_page = self.create_cabinet()

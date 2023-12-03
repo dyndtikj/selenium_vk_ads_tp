@@ -33,8 +33,6 @@ class LoginPage(BasePage):
         self.fill_field(self.locators.PASSWORD_LOCATOR, password)
 
         self.logger.debug("Entering captcha")
-        self.driver.execute_script("alert('Please, enter a captcha! You have 60 seconds')")
-        # без sleep я не придумал как сделать
-        time.sleep(60)
+        self.wait_for_openning(RegistrationPage.convert_regexp_url())
 
         return RegistrationPage(self.driver)
