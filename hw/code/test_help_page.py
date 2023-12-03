@@ -1,0 +1,31 @@
+from time import sleep
+
+from selenium.webdriver.common.by import By
+
+from base import BaseCase
+from hw.code.ui.pages.main_page import MainPage
+from hw.code.ui.pages.monetization_footer_page import HelpAuthorizationPage
+from ui.fixtures import *
+from ui.pages.help_page import HelpPage
+
+
+# @pytest.mark.skip()
+class TestHelpNavigation(BaseCase):
+    cabinet_created = False
+    authorize = False
+    accept_cookie = True
+
+    @allure.story('Navigation')
+    @pytest.mark.parametrize(
+        'section_idx, page',
+        [
+            pytest.param(0, HelpAuthorizationPage),
+        ]
+    )
+    def test_help_navigation(self, section_idx, page):
+        main_page = MainPage(self.driver)
+        main_page.move_to('help')
+
+        help_page = HelpPage(self.driver)
+        help_page.open_help_section(section_idx)
+        assert page(self.driver).is_opened()

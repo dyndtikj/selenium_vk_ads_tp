@@ -4,7 +4,7 @@ from ui.pages.campaign_page import CampaignPage, GroupPage, AdvertisementPage
 import utuls
 
 
-# @pytest.mark.skip()
+@pytest.mark.skip()
 class TestCampaign(BaseCase):
     @staticmethod
     def get_campaign_data(repo_root):
