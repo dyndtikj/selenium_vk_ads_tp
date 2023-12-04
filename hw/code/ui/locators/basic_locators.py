@@ -164,3 +164,32 @@ class SettingsAccessLocators(SettingsLocators):
 
 class SettingsLogsLocators(SettingsLocators):
     pass
+class MainPageLocators(BasePageLocators):
+    LOGO_LOCATOR = (By.XPATH, "//a[contains(@class, 'HeaderLeft_home')]")
+    NEWS_LOCATOR = (By.XPATH, "//a[contains(@href, '/news')]")
+    CASES_LOCATOR = (By.XPATH, "//a[contains(@href, '/cases')]")
+    FORUM_LOCATOR = (By.XPATH, "//a[contains(@href, '/upvote')]")
+    MONETIZATION_LOCATOR = (By.XPATH, "//a[contains(@href, '/partner')]")
+    HELP_LOCATOR = (By.XPATH, "//a[contains(@href, '/help')]")
+    CABINET_LOCATOR = (By.XPATH, "//a[contains(@href, '/hq/dashboard')]")
+
+class NewsPageLocators(BasePageLocators):
+    pass
+
+
+class CasesPageLocators(BasePageLocators):
+    pass
+
+
+class ForumPageLocators(BasePageLocators):
+    pass
+
+
+class MonetizationPageLocators(BasePageLocators):
+    pass
+
+class HelpPageLocators(BasePageLocators):
+    pass
+
+class OauthPageLocators(BasePageLocators):
+    pass

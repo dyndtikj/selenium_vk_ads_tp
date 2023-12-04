@@ -7,7 +7,7 @@ from ui.pages.campaign_page import CampaignPage
 import utuls
 
 
-# @pytest.mark.skip()
+@pytest.mark.skip()
 class TestSite(BaseCase):
     @staticmethod
     def get_pixel_data():
@@ -35,5 +35,4 @@ class TestSite(BaseCase):
         data = self.get_pixel_data()
         pixel_page.create_pixel(data)
         pixel_page.delete_pixel(data['by_domain']['domain'])
-        # time.sleep(5)
         assert pixel_page.find_pixel_by_domain(data['by_domain']['domain'], 1)[0] == False

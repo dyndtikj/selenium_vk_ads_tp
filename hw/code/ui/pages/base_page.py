@@ -20,6 +20,10 @@ class PageNotOpenedExeption(Exception):
     pass
 
 
+class NoNavbarSection:
+    pass
+
+
 class BasePage(object):
     url = None
     locators = basic_locators.BasePageLocators
