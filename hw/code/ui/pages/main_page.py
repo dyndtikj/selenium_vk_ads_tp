@@ -24,7 +24,8 @@ class MainPage(BasePage):
 
         if locator is not None:
             self.click(locator)
-            if len(self.driver.window_handles) > 1:
-                self.driver.switch_to.window(self.driver.window_handles[1])
+            handles_len = len(self.driver.window_handles)
+            if handles_len > 1:
+                self.driver.switch_to.window(self.driver.window_handles[-1])
         else:
             raise NoNavbarSection

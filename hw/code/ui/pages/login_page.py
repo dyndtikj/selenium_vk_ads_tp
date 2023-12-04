@@ -15,7 +15,7 @@ class LoginPage(BasePage):
         self.logger.debug("Starting authorization")
 
         self.click(self.locators.TRIGGER_LOGIN_LOCATOR)
-        self.click(self.locators.OAUTH_MAIL_LOCATOR)
+        self.click(self.locators.OAUTH_MAIL_LOCATOR, timeout=30)
         self.fill_field(self.locators.EMAIL_LOCATOR, email)
         self.click(self.locators.ENTER_PASSWORD_LOCATOR)
         self.fill_field(self.locators.PASSWORD_LOCATOR, password)
