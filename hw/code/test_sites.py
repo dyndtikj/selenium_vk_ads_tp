@@ -7,7 +7,7 @@ from ui.pages.campaign_page import CampaignPage
 import utuls
 
 
-@pytest.mark.skip()
+# @pytest.mark.skip()
 class TestSite(BaseCase):
     @staticmethod
     def get_pixel_data():
