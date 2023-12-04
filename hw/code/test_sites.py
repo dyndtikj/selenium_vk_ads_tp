@@ -1,10 +1,7 @@
-import time
-
 from base import BaseCase
 from ui.fixtures import *
 from ui.pages.sites_page import SitesPage
 from ui.pages.campaign_page import CampaignPage
-import utuls
 
 
 # @pytest.mark.skip()
@@ -18,7 +15,7 @@ class TestSite(BaseCase):
         }
 
     @allure.story('Create pixel')
-    def test_create_pixel(self, repo_root):
+    def test_create_pixel(self):
         campaign_page = CampaignPage(self.driver)
         campaign_page.move_to('sites')
         pixel_page = SitesPage(self.driver)
@@ -28,7 +25,7 @@ class TestSite(BaseCase):
         pixel_page.delete_pixel(data['by_domain']['domain'])
 
     @allure.story('Delete pixel')
-    def test_delete_pixel(self, repo_root):
+    def test_delete_pixel(self):
         campaign_page = CampaignPage(self.driver)
         campaign_page.move_to('sites')
         pixel_page = SitesPage(self.driver)

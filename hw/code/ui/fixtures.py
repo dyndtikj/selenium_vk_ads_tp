@@ -8,6 +8,8 @@ from selenium.webdriver.chrome.options import Options
 from ui.pages.base_page import PageNotOpenedExeption
 from ui.pages.login_page import LoginPage
 
+from dotenv import load_dotenv
+
 
 @pytest.fixture(scope='function')
 def driver(config):
@@ -35,12 +37,10 @@ def get_driver(config):
 
 
 @pytest.fixture(scope='session')
-def credentials(repo_root):
-    with open(os.path.join(repo_root, 'files/userdata'), 'r') as f:
-        lines = f.readlines()
-
-    email = lines[0].strip()
-    password = lines[1].strip()
+def credentials():
+    load_dotenv()
+    email = os.getenv('EMAIL_ACCOUNT')
+    password = os.getenv('PASSWORD_ACCOUNT')
 
     return email, password
 

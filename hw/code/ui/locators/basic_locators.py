@@ -153,6 +153,8 @@ class SettingsLocators(BasePageLocators):
     ACCESS_SECTION_LOCATOR = (By.ID, 'tab-settings.access')
     LOGS_SECTION_LOCATOR = (By.ID, 'tab-settings.logs')
 
+    FORM_LOCATOR = (By.XPATH, "//form[contains(@class, 'General_container_')]")
+
 
 class SettingsNotificationsLocators(SettingsLocators):
     pass
@@ -164,6 +166,8 @@ class SettingsAccessLocators(SettingsLocators):
 
 class SettingsLogsLocators(SettingsLocators):
     pass
+
+
 class MainPageLocators(BasePageLocators):
     LOGO_LOCATOR = (By.XPATH, "//a[contains(@class, 'HeaderLeft_home')]")
     NEWS_LOCATOR = (By.XPATH, "//a[contains(@href, '/news')]")
@@ -172,6 +176,7 @@ class MainPageLocators(BasePageLocators):
     MONETIZATION_LOCATOR = (By.XPATH, "//a[contains(@href, '/partner')]")
     HELP_LOCATOR = (By.XPATH, "//a[contains(@href, '/help')]")
     CABINET_LOCATOR = (By.XPATH, "//a[contains(@href, '/hq/dashboard')]")
+
 
 class NewsPageLocators(BasePageLocators):
     pass

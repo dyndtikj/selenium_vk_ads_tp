@@ -4,6 +4,11 @@ from ui.pages.campaign_page import CampaignPage
 from ui.pages.settings_page import SettingsPage, SettingsNotificationsPage, SettingsAccessPage, SettingsLogsPage
 
 
+INCORRECT_PHONE_NUMBER = 'Некорректный номер телефона'
+REQUIRED_FILED = 'Обязательное поле'
+INCORRECT_INN = 'Некорректный ИНН'
+INN_LENGTH_ERROR = 'Длина ИНН должна быть 12 символов'
+
 # @pytest.mark.skip()
 class TestSettings(BaseCase):
     @staticmethod
@@ -14,8 +19,8 @@ class TestSettings(BaseCase):
             'inn': '112329166348'
         }
 
-    @allure.story('Edit account info')
-    def test_edit_account_info(self):
+    @allure.story('Edit account info (positive)')
+    def test_edit_account_info_positive(self):
         campaign_page = CampaignPage(self.driver)
         campaign_page.move_to('settings')
         settings_page = SettingsPage(self.driver)
@@ -24,6 +29,26 @@ class TestSettings(BaseCase):
         settings_page.edit_account_info(data)
         self.driver.refresh()
         assert data == settings_page.get_account_info()
+
+    @allure.story('Edit account info (negative)')
+    def test_edit_account_info_negative(self):
+        campaign_page = CampaignPage(self.driver)
+        campaign_page.move_to('settings')
+        settings_page = SettingsPage(self.driver)
+
+        invalid_data = [
+            {'data': {'phone': 'test', 'fio': 'Тестов Тест Тестович', 'inn': '112329166348'}, 'error': INCORRECT_PHONE_NUMBER},
+            {'data': {'phone': '+7900000', 'fio': 'Тестов Тест Тестович', 'inn': '112329166348'}, 'error': INCORRECT_PHONE_NUMBER},
+            {'data': {'phone': '+79000000000', 'fio': '', 'inn': '112329166348'}, 'error': REQUIRED_FILED},
+            {'data': {'phone': '+79000000000', 'fio': 'Тестов Тест Тестович', 'inn': ''}, 'error': REQUIRED_FILED},
+            {'data': {'phone': '+79000000000', 'fio': 'Тестов Тест Тестович', 'inn': 'test'}, 'error': INCORRECT_INN},
+            {'data': {'phone': '+79000000000', 'fio': 'Тестов Тест Тестович', 'inn': '52'}, 'error': INN_LENGTH_ERROR},
+        ]
+
+        for data in invalid_data:
+            settings_page.edit_account_info(data['data'])
+            assert data['error'] in settings_page.get_inner_html_of_form()
+            self.driver.refresh()
 
     @pytest.mark.parametrize(
         'to_section, page',

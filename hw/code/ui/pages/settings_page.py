@@ -42,6 +42,10 @@ class SettingsPage(BasePageAuthorized):
     def open_section(self, section_name):
         super().move_to(section_name, sections=self.sections)
 
+    def get_inner_html_of_form(self):
+        form = self.find(self.locators.FORM_LOCATOR)
+        return form.get_attribute("innerHTML")
+
 
 class SettingsNotificationsPage(SettingsPage):
     url = r'^https:\/\/ads\.vk\.com\/hq\/settings\/notifications.*$'

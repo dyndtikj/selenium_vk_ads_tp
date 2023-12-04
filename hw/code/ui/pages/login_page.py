@@ -1,13 +1,10 @@
 import allure
-import time
 from ui.locators import basic_locators
-from ui.pages.base_page import BasePage
 from ui.pages.registration_page import RegistrationPage
+from ui.pages.main_page import MainPage
 
 
-class LoginPage(BasePage):
-    url = r'^https:\/\/ads\.vk\.com\/$'
-
+class LoginPage(MainPage):
     locators = basic_locators.LoginPageLocators
 
     @allure.step("Login")
