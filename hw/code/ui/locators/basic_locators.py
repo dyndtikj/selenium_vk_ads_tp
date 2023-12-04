@@ -177,6 +177,9 @@ class MainPageLocators(BasePageLocators):
     HELP_LOCATOR = (By.XPATH, "//a[contains(@href, '/help')]")
     CABINET_LOCATOR = (By.XPATH, "//a[contains(@href, '/hq/dashboard')]")
 
+    ACCEPT_COOKIE_LOCATOR = (By.XPATH, "//button[contains(@data-test-id, 'cookie-banner-button-vkads')]")
+    FOOTER_ITEM_LOCATOR = (By.XPATH, "//li[contains(@class, 'Footer_item_')]")
+
 
 class NewsPageLocators(BasePageLocators):
     pass
@@ -196,5 +199,10 @@ class MonetizationPageLocators(BasePageLocators):
 class HelpPageLocators(BasePageLocators):
     pass
 
+
 class OauthPageLocators(BasePageLocators):
+    pass
+
+
+class InsightsPageLocators(MainPageLocators):
     pass

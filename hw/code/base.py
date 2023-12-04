@@ -2,6 +2,7 @@ import allure
 import pytest
 from ui.pages.registration_page import RegistrationPage
 from ui.pages.login_page import LoginPage
+from ui.pages.main_page import MainPage
 from ui.pages.settings_page import SettingsPage
 from ui.pages.base_page import PageNotOpenedExeption
 
@@ -12,6 +13,7 @@ class BaseCase:
     driver = None
     authorize = True
     cabinet_created = True
+    accept_cookie = False
 
     @allure.step("Setup")
     @pytest.fixture(scope='function', autouse=True)
@@ -19,6 +21,10 @@ class BaseCase:
         self.driver = driver
         self.config = config
         self.logger = logger
+
+        if self.accept_cookie:
+            main_page = MainPage(self.driver)
+            main_page.accept_cookie()
 
         if self.authorize:
             with allure.step("login"):

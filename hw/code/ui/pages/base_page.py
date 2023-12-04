@@ -115,6 +115,11 @@ class BasePage(object):
                 if i == CLICK_RETRY - 1:
                     raise
 
+    def scroll_down(self):
+        page_height = self.driver.execute_script("return document.body.scrollHeight")
+        a = ActionChains(self.driver)
+        a.scroll_by_amount(0, page_height).perform()
+
 
 class NoNavbarSection(Exception):
     pass
