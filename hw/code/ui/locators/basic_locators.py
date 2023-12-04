@@ -115,7 +115,19 @@ class ECommPageLocators(BasePageLocators):
 
 
 class SitesPageLocators(BasePageLocators):
-    pass
+    SITES_LOCATOR = (By.XPATH, "//a[contains(@data-route, 'pixels')]")
+    PIXEL_MODAL_LOCATOR = (By.XPATH, "//div[contains(@id, '_modal_')]")
+    ADD_PIXEL_BUTTON_MAIN_LOCATOR = (By.XPATH, "//button[contains(@class, 'vkuiButton--mode-primary') and contains(@class, 'vkuiButton--stretched')]")
+    ADD_PIXEL_BUTTON_LOCATOR = (By.XPATH, "//button[contains(@class, 'vkuiButton--mode-primary') and contains(@class, 'vkuiButton--appearance-accent')]")
+    PIXEL_DOMAIN_FIELD_LOCATOR = (By.XPATH, "//input[contains(@class, 'vkuiInput__el')]")
+    MORE_PIXEL_BUTTON_LOCATOR = (By.XPATH, "//button[contains(@class, 'PixelMoreCell_moreButton') and contains(@class, 'vkuiIconButton')]")
+    PIXEL_CONFIRMATION_LOCATOR = (By.XPATH, "//div[contains(@class, 'vkuiModalPage__in')]")
+    CREATE_NEW_PIXEL_LOCATOR = (By.XPATH,"//span[.='Создать новый пиксель']")
+    CLOSE_CREATE_PIXEL_LOCATOR = (By.XPATH, "//div[contains(@aria-label, 'Закрыть')]")
+    DELETE_PIXEL_LOCATOR = (By.XPATH, "//span[.='Удалить пиксель']")
+    CONFIRM_DELETE_PIXEL_LOCATOR = (By.XPATH, "//span[.='Удалить']")
+    PIXEL_LIST_LOCATOR = (By.ID, "pixels")
+    PIXEL_FORMAT_LOCATOR = (By.XPATH, "//a[contains(@href, '{}')]")
 
 
 class MobAppsPageLocators(BasePageLocators):
@@ -151,4 +163,33 @@ class SettingsAccessLocators(SettingsLocators):
 
 
 class SettingsLogsLocators(SettingsLocators):
+    pass
+class MainPageLocators(BasePageLocators):
+    LOGO_LOCATOR = (By.XPATH, "//a[contains(@class, 'HeaderLeft_home')]")
+    NEWS_LOCATOR = (By.XPATH, "//a[contains(@href, '/news')]")
+    CASES_LOCATOR = (By.XPATH, "//a[contains(@href, '/cases')]")
+    FORUM_LOCATOR = (By.XPATH, "//a[contains(@href, '/upvote')]")
+    MONETIZATION_LOCATOR = (By.XPATH, "//a[contains(@href, '/partner')]")
+    HELP_LOCATOR = (By.XPATH, "//a[contains(@href, '/help')]")
+    CABINET_LOCATOR = (By.XPATH, "//a[contains(@href, '/hq/dashboard')]")
+
+class NewsPageLocators(BasePageLocators):
+    pass
+
+
+class CasesPageLocators(BasePageLocators):
+    pass
+
+
+class ForumPageLocators(BasePageLocators):
+    pass
+
+
+class MonetizationPageLocators(BasePageLocators):
+    pass
+
+class HelpPageLocators(BasePageLocators):
+    pass
+
+class OauthPageLocators(BasePageLocators):
     pass
