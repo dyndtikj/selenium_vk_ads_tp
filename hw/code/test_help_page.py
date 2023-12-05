@@ -3,8 +3,13 @@ from time import sleep
 from selenium.webdriver.common.by import By
 
 from base import BaseCase
+from hw.code.ui.pages.help_documents_page import HelpDocumentsPage
+from hw.code.ui.pages.help_features_page import HelpFeaturesPage
+from hw.code.ui.pages.help_general_page import HelpGeneralPage
+from hw.code.ui.pages.help_mini_ads_page import HelpMiniAdsPage
+from hw.code.ui.pages.help_statistics_page import HelpStatisticsPage
 from hw.code.ui.pages.main_page import MainPage
-from hw.code.ui.pages.monetization_footer_page import HelpAuthorizationPage
+from hw.code.ui.pages.help_authorization_page import HelpAuthorizationPage
 from ui.fixtures import *
 from ui.pages.help_page import HelpPage
 
@@ -20,6 +25,11 @@ class TestHelpNavigation(BaseCase):
         'section_idx, page',
         [
             pytest.param(0, HelpAuthorizationPage),
+            pytest.param(1, HelpGeneralPage),
+            pytest.param(2, HelpFeaturesPage),
+            pytest.param(3, HelpStatisticsPage),
+            pytest.param(4, HelpDocumentsPage),
+            pytest.param(5, HelpMiniAdsPage),
         ]
     )
     def test_help_navigation(self, section_idx, page):

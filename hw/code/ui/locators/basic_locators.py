@@ -8,6 +8,7 @@ class BasePageLocators:
     FOOTER_CONTROL = (By.XPATH, "//div[contains(@class, 'SelectLanguage_wrapper')]")
     FOOTER_ITEMS = (By.XPATH, "//li[contains(@class, 'Footer_item_')]")
     FOOTER_NEWS = (By.XPATH, "//a[contains(@href, '/news')]")
+    HELP_ITEMS_LOCATOR = (By.XPATH, "//a[contains(@class, 'CategoryCard_wrapper')]")  # fix
 
 
 class HelpPageLocators(BasePageLocators):
@@ -233,6 +234,26 @@ class ExpertPageLocators(MainPageLocators):
 
 
 class HelpAuthorizationPageLocators(HelpPageLocators):
+    pass
+
+
+class HelpGeneralPageLocators(HelpPageLocators):
+    pass
+
+
+class HelpFeaturesPageLocators(HelpPageLocators):
+    pass
+
+
+class HelpMiniAdsPageLocators(HelpPageLocators):
+    pass
+
+
+class HelpStatisticsPageLocators(HelpPageLocators):
+    pass
+
+
+class HelpDocumentsPageLocators(HelpPageLocators):
     pass
 
 
