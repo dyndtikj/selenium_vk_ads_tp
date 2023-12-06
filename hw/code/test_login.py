@@ -3,10 +3,15 @@ from ui.fixtures import *
 from ui.pages.login_page import LoginPage
 
 
-# @pytest.mark.skip()
+@pytest.mark.skip()
 class TestLogin(BaseCase):
     authorize = False
     cabinet_created = False
+
+    user_data = {
+        "name": "тест",
+        "surname": "тестов",
+    }
 
     @allure.story('Login')
     def test_login(self, credentials):
@@ -15,3 +20,5 @@ class TestLogin(BaseCase):
 
         registration_page = login_page.login(email, password)
         assert registration_page.is_opened()
+        assert registration_page.get_user_data() == '{} {}'.format(self.user_data["name"], self.user_data["surname"])
+

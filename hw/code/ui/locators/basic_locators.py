@@ -21,6 +21,12 @@ class RegistrationPageLocators(BasePageLocators):
     CREATE_CABINET_LOCATOR = (By.ID, "click-createNewButton")
     EMAIL_LOCATOR = (By.NAME, "email")
     SUBMIT_LOCATOR = (By.XPATH, "//button[contains(@data-testid, 'create-button')]")
+    SWITCH_ACCOUNT_LOCATOR = (By.XPATH, "//div[contains(@class, 'AccountSwitch_changeAccountName')]")
+    AC_TYPES_CHECKBOX_LOCATOR = (By.XPATH, "//div[contains(@class, 'vkuiRadio__container')]")
+    AC_TYPES_LOCATOR = (By.XPATH, "//span[contains(@class, 'registration_itemWitContextHelpText')]")
+    PHYS_AC_TYPE_LOCATOR = (By.XPATH,"//span[.='Физическое лицо']")
+    ACCEPT_RULES_LOCATOR = (By.XPATH, "//div[contains(@class, 'vkuiCheckbox__icon')]")
+    BOTTOM_ERROR_LOCATOR = (By.XPATH, "//span[contains(@class, 'vkuiFormItem__bottom')]")
 
 
 class BasePageAuthorizedLocators(BasePageLocators):
