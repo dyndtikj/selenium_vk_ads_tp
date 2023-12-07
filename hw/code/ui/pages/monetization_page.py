@@ -8,6 +8,37 @@ class MonetizationPage(BasePage):
 
     locators = basic_locators.MonetizationPageLocators
 
+    def find_monetization_section(self):
+        return self.find_list(self.locators.MONETIZATION_ITEMS_LOCATOR)
+
+    def find_monetization_buttons(self):
+        return self.find_list(self.locators.MONETIZATION_TOGGLE_LOCATOR)
+
+    def click_app_button(self):
+        buttons = self.find_monetization_buttons()
+        print(buttons)
+        buttons[1].click()
+
+    def fill_name(self):
+        self.click(self.locators.MONETIZATION_NAME_LOCATOR)
+        self.fill_field(self.locators.MONETIZATION_NAME_LOCATOR, "Иван")
+        self.click(self.locators.MONETIZATION_NAME_LOCATOR)
+
+    def fill_email(self):
+        self.click(self.locators.MONETIZATION_EMAIL_LOCATOR)
+        self.fill_field(self.locators.MONETIZATION_EMAIL_LOCATOR, "test@mailbx.ru")
+        self.click(self.locators.MONETIZATION_EMAIL_LOCATOR)
+
+    def get_form_button(self):
+        return self.find(self.locators.MONETIZATION_FORM_BUTTON_LOCATOR)
+
+    def click_form_button(self):
+        self.click(self.locators.MONETIZATION_FORM_BUTTON_LOCATOR)
+
+    def get_success_form(self):
+        return self.find(self.locators.MONETIZATION_FORM_SUCCESS_LOCATOR)
+
+
     # def is_opened(self, timeout=15):
     #     Set s= self.driver.window_handles
     #

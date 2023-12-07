@@ -9,6 +9,21 @@ class BasePageLocators:
     FOOTER_ITEMS = (By.XPATH, "//li[contains(@class, 'Footer_item_')]")
     FOOTER_NEWS = (By.XPATH, "//a[contains(@href, '/news')]")
     HELP_ITEMS_LOCATOR = (By.XPATH, "//a[contains(@class, 'CategoryCard_wrapper')]")  # fix
+    MONETIZATION_ITEMS_LOCATOR = (By.XPATH, "//div[contains(@class, 'Slider_title')]")
+    MONETIZATION_TOGGLE_LOCATOR = (By.XPATH, "//button[contains(@class, 'Tabs_tab')]")
+    MONETIZATION_NAME_LOCATOR = (By.ID, "name")
+    MONETIZATION_EMAIL_LOCATOR = (By.ID, "email")
+    MONETIZATION_FORM_BUTTON_LOCATOR = (By.XPATH, "//button[contains(@class, 'Form_button')]")
+    MONETIZATION_FORM_SUCCESS_LOCATOR = (By.XPATH, "//div[contains(@class, 'Form_success')]")
+
+
+class MonetizationPageLocators(BasePageLocators):
+    MONETIZATION_ITEMS_LOCATOR = (By.XPATH, "//div[contains(@class, 'Slider_title')]")
+    MONETIZATION_TOGGLE_LOCATOR = (By.XPATH, "//button[contains(@class, 'Tabs_tab')]")
+    MONETIZATION_NAME_LOCATOR = (By.ID, "name")
+    MONETIZATION_EMAIL_LOCATOR = (By.ID, "email")
+    MONETIZATION_FORM_BUTTON_LOCATOR = (By.XPATH, "//button[contains(@class, 'Form_button')]")
+    MONETIZATION_FORM_SUCCESS_LOCATOR = (By.XPATH, "//div[contains(@class, 'Form_success')]")
 
 
 class HelpPageLocators(BasePageLocators):

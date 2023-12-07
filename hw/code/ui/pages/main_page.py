@@ -60,3 +60,6 @@ class MainPage(BasePage):
         self.scroll_down()
         sections = self.find_list(self.locators.FOOTER_ITEM_LOCATOR)
         sections[ind].click()
+
+    def scroll_down(self):
+        self.scroll_down()
