@@ -24,7 +24,7 @@ class NoNavbarSection:
 
 
 class BasePage(object):
-    url = None
+    url = r'^https:\/\/ads\.vk\.com\/$'
     locators = basic_locators.BasePageLocators
 
     def __init__(self, driver):
@@ -46,7 +46,7 @@ class BasePage(object):
         if timeout is None:
             timeout = 5
         return WebDriverWait(obj, timeout=timeout)
-    
+
     def wait_for_openning(self, url, timeout=30):
         return self.wait(timeout).until(EC.url_to_be(url))
 
@@ -56,13 +56,13 @@ class BasePage(object):
             return True
         except TimeoutException:
             return False
-    
+
     def fill_field(self, locator, string):
         field = self.click(locator)
         field.clear()
         field.send_keys(string)
         return field
-    
+
     def fill_image_field(self, locator, path):
         field = self.find(locator)
         field.send_keys(path)
@@ -72,8 +72,8 @@ class BasePage(object):
 
     def find_list(self, locator, timeout=None):
         return self.wait(timeout).until(EC.presence_of_all_elements_located(locator))
-    
-    def find(self, locator, timeout=None, obj=None):        
+
+    def find(self, locator, timeout=None, obj=None):
         return self.wait(timeout=timeout, obj=obj).until(EC.presence_of_element_located(locator))
 
     def select(self, locator, value):
@@ -102,6 +102,12 @@ class BasePage(object):
                 if i == CLICK_RETRY - 1:
                     raise
 
+    def wait_for_scroll(self, elem, timeout=None):
+        return self.wait(timeout, obj=elem).until(EC.visibility_of(elem))
+
+    def scroll_to(self, item):
+        self.driver.execute_script("arguments[0].scrollIntoView(true);", item)
+
     @allure.step('Hovering and clicking on {locator}')
     def hover_and_click(self, locator, timeout=5, obj=None):
         a = ActionChains(self.driver)
@@ -121,6 +127,10 @@ class BasePage(object):
 
 
 class NoNavbarSection(Exception):
+    pass
+
+
+class FooterSection:
     pass
 
 

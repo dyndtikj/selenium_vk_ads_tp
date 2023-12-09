@@ -2,7 +2,32 @@ from selenium.webdriver.common.by import By
 
 
 class BasePageLocators:
-    pass
+    FOOTER_ABOUT = (By.XPATH, "//a[contains(@class, 'Footer_about')]")
+    FOOTER_LOGO_VK_BUSINESS = (By.LINK_TEXT, "//a[contains(@href, 'https://vk.company/ru/company/business/')]")
+    FOOTER_BUTTON_CABINET = (By.XPATH, "//a[contains(@class, 'ButtonCabinet_primary')]")
+    FOOTER_CONTROL = (By.XPATH, "//div[contains(@class, 'SelectLanguage_wrapper')]")
+    FOOTER_ITEMS = (By.XPATH, "//li[contains(@class, 'Footer_item_')]")
+    FOOTER_NEWS = (By.XPATH, "//a[contains(@href, '/news')]")
+    HELP_ITEMS_LOCATOR = (By.XPATH, "//a[contains(@class, 'CategoryCard_wrapper')]")  # fix
+    MONETIZATION_ITEMS_LOCATOR = (By.XPATH, "//div[contains(@class, 'Slider_title')]")
+    MONETIZATION_TOGGLE_LOCATOR = (By.XPATH, "//button[contains(@class, 'Tabs_tab')]")
+    MONETIZATION_NAME_LOCATOR = (By.ID, "name")
+    MONETIZATION_EMAIL_LOCATOR = (By.ID, "email")
+    MONETIZATION_FORM_BUTTON_LOCATOR = (By.XPATH, "//button[contains(@class, 'Form_button')]")
+    MONETIZATION_FORM_SUCCESS_LOCATOR = (By.XPATH, "//div[contains(@class, 'Form_success')]")
+
+
+class MonetizationPageLocators(BasePageLocators):
+    MONETIZATION_ITEMS_LOCATOR = (By.XPATH, "//div[contains(@class, 'Slider_title')]")
+    MONETIZATION_TOGGLE_LOCATOR = (By.XPATH, "//button[contains(@class, 'Tabs_tab')]")
+    MONETIZATION_NAME_LOCATOR = (By.ID, "name")
+    MONETIZATION_EMAIL_LOCATOR = (By.ID, "email")
+    MONETIZATION_FORM_BUTTON_LOCATOR = (By.XPATH, "//button[contains(@class, 'Form_button')]")
+    MONETIZATION_FORM_SUCCESS_LOCATOR = (By.XPATH, "//div[contains(@class, 'Form_success')]")
+
+
+class HelpPageLocators(BasePageLocators):
+    HELP_ITEMS_LOCATOR = (By.XPATH, "//a[contains(@class, 'CategoryCard_wrapper')]")
 
 
 class LoginPageLocators(BasePageLocators):
@@ -85,7 +110,8 @@ class AddAdvertisementPageLocators(AdvertisementPageLocators):
     TITLE_LOCATOR = (By.NAME, "заголовок, макс. 40 символов")
     SHORT_DESCRIPTION_LOCATOR = (By.NAME, "заголовок, макс. 90 символов")
     IMAGE_INPUT_LOCATOR = (By.XPATH, "//input[contains(@class, 'vkuiFile__input')]")
-    PREVIEW_LOCATOR = (By.XPATH, "//img[contains(@class, 'FirstTemplate_firstImage') and contains(@src, 'r.mradx.net')]")
+    PREVIEW_LOCATOR = (
+        By.XPATH, "//img[contains(@class, 'FirstTemplate_firstImage') and contains(@src, 'r.mradx.net')]")
 
     SUBMIT_LOCATOR = (By.XPATH, "//button[contains(@class, 'vkuiButton--mode-primary')]")
 
@@ -93,7 +119,9 @@ class AddAdvertisementPageLocators(AdvertisementPageLocators):
 class AudiencePageLocators(BasePageLocators):
     START_CREATING_AUDIENCE = (By.XPATH, "//button[contains(@data-testid, 'create-audience')]")
     TITLE_AUDIENCE_LOCATOR = (By.XPATH, "//input[contains(@class, 'vkuiInput__el')]")
-    ADD_SOURCE_LOCATOR = (By.XPATH, "//button[contains(@class, 'vkuiButton--stretched') and contains(@class, 'vkuiButton--mode-secondary')]")
+    ADD_SOURCE_LOCATOR = (
+        By.XPATH,
+        "//button[contains(@class, 'vkuiButton--stretched') and contains(@class, 'vkuiButton--mode-secondary')]")
     SOURCE_LOCATOR = (By.XPATH, "//div[contains(@tabindex, '0') and contains(@role, 'button')]")
     KEYWORDS_LOCATOR = (By.XPATH, "//textarea[contains(@class, 'vkuiTextarea__el')]")
     SUBMIT_BUTTON_LOCATOR = (By.XPATH, "//button[contains(@class, 'vkuiButton--mode-primary')]")
@@ -123,12 +151,16 @@ class ECommPageLocators(BasePageLocators):
 class SitesPageLocators(BasePageLocators):
     SITES_LOCATOR = (By.XPATH, "//a[contains(@data-route, 'pixels')]")
     PIXEL_MODAL_LOCATOR = (By.XPATH, "//div[contains(@id, '_modal_')]")
-    ADD_PIXEL_BUTTON_MAIN_LOCATOR = (By.XPATH, "//button[contains(@class, 'vkuiButton--mode-primary') and contains(@class, 'vkuiButton--stretched')]")
-    ADD_PIXEL_BUTTON_LOCATOR = (By.XPATH, "//button[contains(@class, 'vkuiButton--mode-primary') and contains(@class, 'vkuiButton--appearance-accent')]")
+    ADD_PIXEL_BUTTON_MAIN_LOCATOR = (
+        By.XPATH,
+        "//button[contains(@class, 'vkuiButton--mode-primary') and contains(@class, 'vkuiButton--stretched')]")
+    ADD_PIXEL_BUTTON_LOCATOR = (By.XPATH,
+                                "//button[contains(@class, 'vkuiButton--mode-primary') and contains(@class, 'vkuiButton--appearance-accent')]")
     PIXEL_DOMAIN_FIELD_LOCATOR = (By.XPATH, "//input[contains(@class, 'vkuiInput__el')]")
-    MORE_PIXEL_BUTTON_LOCATOR = (By.XPATH, "//button[contains(@class, 'PixelMoreCell_moreButton') and contains(@class, 'vkuiIconButton')]")
+    MORE_PIXEL_BUTTON_LOCATOR = (
+        By.XPATH, "//button[contains(@class, 'PixelMoreCell_moreButton') and contains(@class, 'vkuiIconButton')]")
     PIXEL_CONFIRMATION_LOCATOR = (By.XPATH, "//div[contains(@class, 'vkuiModalPage__in')]")
-    CREATE_NEW_PIXEL_LOCATOR = (By.XPATH,"//span[.='Создать новый пиксель']")
+    CREATE_NEW_PIXEL_LOCATOR = (By.XPATH, "//span[.='Создать новый пиксель']")
     CLOSE_CREATE_PIXEL_LOCATOR = (By.XPATH, "//div[contains(@aria-label, 'Закрыть')]")
     DELETE_PIXEL_LOCATOR = (By.XPATH, "//span[.='Удалить пиксель']")
     CONFIRM_DELETE_PIXEL_LOCATOR = (By.XPATH, "//span[.='Удалить']")
@@ -147,7 +179,8 @@ class LeadAdsPageLocators(BasePageLocators):
 class SettingsLocators(BasePageLocators):
     DELETE_ACCOUNT_LOCATOR = (By.XPATH, "//button[contains(@class, 'DeleteAccount_button')]")
     MODAL_ACTIONS_DELETE_ACCOUNT = (By.XPATH, "//div[contains(@class, 'DeleteAccountConfirmModal_actions')]")
-    CONFIRM_DELETE_ACCOUNT = (By.XPATH, "//button[contains(@class, 'vkuiButton--mode-primary') and contains(@class, 'vkuiButton--appearance-negative')]")
+    CONFIRM_DELETE_ACCOUNT = (By.XPATH,
+                              "//button[contains(@class, 'vkuiButton--mode-primary') and contains(@class, 'vkuiButton--appearance-negative')]")
 
     PHONE_LOCATOR = (By.XPATH, "//input[contains(@data-testid, 'general-phone')]")
     FIO_LOCATOR = (By.XPATH, "//input[contains(@data-testid, 'general-ord-name')]")
@@ -195,12 +228,57 @@ class CasesPageLocators(BasePageLocators):
     pass
 
 
+class NewsPageLocatorsFooter(MainPageLocators):
+    pass
+
+
+class EventsPageLocators(MainPageLocators):
+    pass
+
+
+class DocumentsPageLocators(MainPageLocators):
+    pass
+
+
+class MonetizationFooterPageLocators(MainPageLocators):
+    pass
+
+
+class ExpertPageLocators(MainPageLocators):
+    pass
+
+
+class HelpAuthorizationPageLocators(HelpPageLocators):
+    pass
+
+
+class HelpGeneralPageLocators(HelpPageLocators):
+    pass
+
+
+class HelpFeaturesPageLocators(HelpPageLocators):
+    pass
+
+
+class HelpMiniAdsPageLocators(HelpPageLocators):
+    pass
+
+
+class HelpStatisticsPageLocators(HelpPageLocators):
+    pass
+
+
+class HelpDocumentsPageLocators(HelpPageLocators):
+    pass
+
+
 class ForumPageLocators(BasePageLocators):
     pass
 
 
 class MonetizationPageLocators(BasePageLocators):
     pass
+
 
 class HelpPageLocators(BasePageLocators):
     pass
