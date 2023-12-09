@@ -22,13 +22,10 @@ class TestFooterNavigation(BaseCase):
     @pytest.mark.parametrize(
         'section_idx, page',
         [
-            # pytest.param(0, NewsPageFooter),
             pytest.param(1, ExpertPage),
             pytest.param(2, InsightsPage),
-            # pytest.param(3, CasesPage),
             pytest.param(4, EventsPage),
             pytest.param(6, DocumentsPage),
-            # pytest.param(7, MonetizationFooterPage),
         ]
     )
     def test_footer_navigation(self, section_idx, page):

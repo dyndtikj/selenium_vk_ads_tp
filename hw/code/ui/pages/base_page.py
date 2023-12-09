@@ -107,6 +107,7 @@ class BasePage(object):
 
     def scroll_to(self, item):
         self.driver.execute_script("arguments[0].scrollIntoView(true);", item)
+        self.wait_for_scroll(item, timeout=5)
 
     @allure.step('Hovering and clicking on {locator}')
     def hover_and_click(self, locator, timeout=5, obj=None):

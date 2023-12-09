@@ -4,7 +4,7 @@ import allure
 from ui.locators import basic_locators
 from ui.pages.base_page import BasePage, NoNavbarSection
 from selenium.webdriver.common.action_chains import ActionChains
-from hw.code.ui.pages.base_page import FooterSection
+from ui.pages.base_page import FooterSection
 
 
 class MainPage(BasePage):
@@ -60,6 +60,7 @@ class MainPage(BasePage):
         self.scroll_down()
         sections = self.find_list(self.locators.FOOTER_ITEM_LOCATOR)
         sections[ind].click()
+        handles_len = len(self.driver.window_handles)
+        if handles_len > 1:
+            self.driver.switch_to.window(self.driver.window_handles[-1])
 
-    def scroll_down(self):
-        self.scroll_down()
