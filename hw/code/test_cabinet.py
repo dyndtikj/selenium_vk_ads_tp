@@ -11,7 +11,7 @@ from ui.pages.leadads_page import LeadAdsPage
 from ui.pages.settings_page import SettingsPage
 from ui.pages.registration_page import RegistrationPage
 
-@pytest.mark.skip()
+# @pytest.mark.skip()
 class TestCabinet(BaseCase):
     cabinet_created = False
     data = {'email': 'test@mail.ru'}

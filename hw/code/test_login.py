@@ -3,7 +3,7 @@ from ui.fixtures import *
 from ui.pages.login_page import LoginPage
 
 
-@pytest.mark.skip()
+# @pytest.mark.skip()
 class TestLogin(BaseCase):
     authorize = False
     cabinet_created = False
