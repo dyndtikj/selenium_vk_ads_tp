@@ -18,7 +18,7 @@ class LoginPage(MainPage):
         self.fill_field(self.locators.PASSWORD_LOCATOR, password)
         self.click(self.locators.SUBMIT_LOCATOR)
 
-        self.logger.debug("Authorization data has been successfully entered")
+        self.logger.debug("Authorization files has been successfully entered")
 
         return RegistrationPage(self.driver)
 

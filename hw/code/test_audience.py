@@ -4,7 +4,6 @@ from ui.pages.campaign_page import CampaignPage
 from ui.pages.audience_page import AudiencePage, AudienceUsersPage
 
 
-# @pytest.mark.skip()
 class TestAudience(BaseCase):
     @staticmethod
     def get_audience_data():
@@ -55,4 +54,3 @@ class TestAudience(BaseCase):
         audience_page = AudiencePage(self.driver)
         audience_page.open_section(to_section)
         assert page(self.driver).is_opened()
-

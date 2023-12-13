@@ -51,4 +51,3 @@ class SitesPage(BasePageAuthorized):
             return True, pixel
         except TimeoutException:
             return False, None
-

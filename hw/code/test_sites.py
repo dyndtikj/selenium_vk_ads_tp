@@ -4,7 +4,6 @@ from ui.pages.sites_page import SitesPage
 from ui.pages.campaign_page import CampaignPage
 
 
-# @pytest.mark.skip()
 class TestSite(BaseCase):
     @staticmethod
     def get_pixel_data():

@@ -8,7 +8,7 @@ class BasePageLocators:
     FOOTER_CONTROL = (By.XPATH, "//div[contains(@class, 'SelectLanguage_wrapper')]")
     FOOTER_ITEMS = (By.XPATH, "//li[contains(@class, 'Footer_item_')]")
     FOOTER_NEWS = (By.XPATH, "//a[contains(@href, '/news')]")
-    HELP_ITEMS_LOCATOR = (By.XPATH, "//a[contains(@class, 'CategoryCard_wrapper')]")  # fix
+    HELP_ITEMS_LOCATOR = (By.XPATH, "//a[contains(@class, 'CategoryCard_wrapper')]")
     MONETIZATION_ITEMS_LOCATOR = (By.XPATH, "//div[contains(@class, 'Slider_title')]")
     MONETIZATION_TOGGLE_LOCATOR = (By.XPATH, "//button[contains(@class, 'Tabs_tab')]")
     MONETIZATION_NAME_LOCATOR = (By.ID, "name")
@@ -18,7 +18,6 @@ class BasePageLocators:
 
 
 class MonetizationPageLocators(BasePageLocators):
-    MONETIZATION_ITEMS_LOCATOR = (By.XPATH, "//div[contains(@class, 'Slider_title')]")
     MONETIZATION_TOGGLE_LOCATOR = (By.XPATH, "//button[contains(@class, 'Tabs_tab')]")
     MONETIZATION_NAME_LOCATOR = (By.ID, "name")
     MONETIZATION_EMAIL_LOCATOR = (By.ID, "email")
@@ -273,10 +272,6 @@ class HelpDocumentsPageLocators(HelpPageLocators):
 
 
 class ForumPageLocators(BasePageLocators):
-    pass
-
-
-class MonetizationPageLocators(BasePageLocators):
     pass
 
 

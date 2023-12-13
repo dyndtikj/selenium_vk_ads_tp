@@ -1,6 +1,6 @@
 allure-results/
 venv/
-hw/code/files/userdata
+hw/data/userdata
 idea/
 .pytest_cache/
 .idea/

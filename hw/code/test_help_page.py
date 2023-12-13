@@ -14,7 +14,6 @@ from ui.fixtures import *
 from ui.pages.help_page import HelpPage
 
 
-# @pytest.mark.skip()
 class TestHelpNavigation(BaseCase):
     cabinet_created = False
     authorize = False

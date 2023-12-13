@@ -8,7 +8,14 @@ sourse venv/bin/activate
 pip install -r requirements.txt
 ```
 
-TODO: добавить креды в переменные окружения
+## Настройка окружения 
+Создать .env файл формата:
+
+```
+EMAIL_ACCOUNT=test@test.com
+PASSWORD_ACCOUNT=test_pw
+```
+За валидными данными можно написать в личку тг: @dyndtikj
 
 ## Запуск
 ```bash

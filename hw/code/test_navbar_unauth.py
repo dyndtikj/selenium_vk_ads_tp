@@ -8,7 +8,7 @@ from ui.pages.monetization_page import MonetizationPage
 from ui.pages.oauth_page import OauthPage
 from ui.pages.help_page import HelpPage
 
-# @pytest.mark.skip()
+
 class TestCabinetNavigation(BaseCase):
     authorize = False
     cabinet_created = False

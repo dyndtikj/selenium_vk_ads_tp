@@ -1,4 +1,4 @@
-from base import BaseCase
+from base import EMAIL, BaseCase
 from ui.fixtures import *
 from ui.pages.login_page import LoginPage
 from ui.pages.campaign_page import CampaignPage
@@ -11,10 +11,15 @@ from ui.pages.leadads_page import LeadAdsPage
 from ui.pages.settings_page import SettingsPage
 from ui.pages.registration_page import RegistrationPage
 
-# @pytest.mark.skip()
+
+LEGAL_ENTITY_NAME = 'Юридическое лицо'
+REQUIRED_FIELD_ERROR = 'Обязательное поле'
+INCORRECT_EMAIL_ERROR = 'Некорректный email адрес'
+
+
 class TestCabinet(BaseCase):
     cabinet_created = False
-    data = {'email': 'test@mail.ru'}
+    data = {'email': EMAIL}
 
     @allure.story('Create Cabinet')
     def test_success_create_cabinet(self):
@@ -32,19 +37,19 @@ class TestCabinet(BaseCase):
     def test_cabinet_agency(self):
         registration_page = RegistrationPage(self.driver)
         registration_page.fill_agency_type()
-        assert registration_page.get_allowed_ac_types() == ['Юридическое лицо']
+        assert registration_page.get_allowed_ac_types() == [LEGAL_ENTITY_NAME]
 
     @allure.story('Create Cabinet with empty email')
     def test_cabinet_email_required(self):
         registration_page = RegistrationPage(self.driver)
         registration_page.create_cabinet_empty_email()
-        assert registration_page.get_email_error_message() == 'Обязательное поле'
+        assert registration_page.get_email_error_message() == REQUIRED_FIELD_ERROR
 
     @allure.story('Create Cabinet without rule accept')
     def test_cabinet_without_accept(self):
         registration_page = RegistrationPage(self.driver)
         registration_page.create_cabinet_without_accept(self.data)
-        assert registration_page.get_rules_error_message() == 'Обязательное поле'
+        assert registration_page.get_rules_error_message() == REQUIRED_FIELD_ERROR
 
     @allure.story('Create Cabinet with wrong email format')
     @pytest.mark.parametrize(
@@ -60,9 +65,9 @@ class TestCabinet(BaseCase):
     def test_cabinet_wrong_email_format(self, email):
         registration_page = RegistrationPage(self.driver)
         registration_page.create_cabinet_with_wrong_email(email)
-        assert registration_page.get_email_format_error_message() == 'Некорректный email адрес'
+        assert registration_page.get_email_format_error_message() == INCORRECT_EMAIL_ERROR
 
-# @pytest.mark.skip()
+
 class TestCabinetNavigation(BaseCase):
     @allure.story('Navigation')
     @pytest.mark.parametrize(

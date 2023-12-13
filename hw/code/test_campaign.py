@@ -1,10 +1,11 @@
+import time
+
 from base import BaseCase
 from ui.fixtures import *
 from ui.pages.campaign_page import CampaignPage, GroupPage, AdvertisementPage
 import utuls
 
 
-# @pytest.mark.skip()
 class TestCampaign(BaseCase):
     @staticmethod
     def get_campaign_data(repo_root):
@@ -20,7 +21,7 @@ class TestCampaign(BaseCase):
             'advertisement': {
                 'title': 'Тест',
                 'short_description': 'Тестовое описание',
-                'image_path': os.path.join(repo_root, 'files/img/advertisement.jpg'),
+                'image_path': os.path.abspath(os.path.join(repo_root, '../data/img/advertisement.jpg')),
             }
         }
 
@@ -28,7 +29,6 @@ class TestCampaign(BaseCase):
     def test_create_campaign(self, repo_root):
         campaign_page = CampaignPage(self.driver)
         data = self.get_campaign_data(repo_root)
-
         campaign_page.create_campaign(data)
         campaign_name = f'Кампания {utuls.get_today()}'
         ind, _ = campaign_page.find_ind_campaign_by_name(campaign_name)
@@ -39,9 +39,9 @@ class TestCampaign(BaseCase):
     @allure.story('Delete campaign')
     def test_delete_campaign(self, repo_root):
         campaign_page = CampaignPage(self.driver)
-        data = self.get_campaign_data(repo_root)
+        files = self.get_campaign_data(repo_root)
 
-        campaign_page.create_campaign(data)
+        campaign_page.create_campaign(files)
         campaign_name = f'Кампания {utuls.get_today()}'
 
         campaign_page.delete_campaign(campaign_name)
@@ -62,4 +62,3 @@ class TestCampaign(BaseCase):
         campaign_page = CampaignPage(self.driver)
         campaign_page.open_section(to_section)
         assert page(self.driver).is_opened()
-

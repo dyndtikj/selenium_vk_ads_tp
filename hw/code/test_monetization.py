@@ -7,7 +7,6 @@ from ui.pages.monetization_page import MonetizationPage
 from ui.pages.main_page import MainPage
 from ui.fixtures import *
 
-# @pytest.mark.skip()
 class TestHelpNavigation(BaseCase):
     cabinet_created = False
     authorize = False
@@ -51,4 +50,3 @@ class TestHelpNavigation(BaseCase):
         monetization_page.click_app_button()
         section = monetization_page.find_monetization_section()
         assert (section[section_idx].text == banner)
-

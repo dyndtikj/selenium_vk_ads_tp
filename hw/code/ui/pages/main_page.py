@@ -1,9 +1,7 @@
-from time import sleep
-
 import allure
 from ui.locators import basic_locators
 from ui.pages.base_page import BasePage, NoNavbarSection
-from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support import expected_conditions as EC
 from ui.pages.base_page import FooterSection
 
 
@@ -59,8 +57,8 @@ class MainPage(BasePage):
     def open_footer_section(self, ind):
         self.scroll_down()
         sections = self.find_list(self.locators.FOOTER_ITEM_LOCATOR)
+        self.wait(timeout=5).until(EC.element_to_be_clickable(sections[ind]))
         sections[ind].click()
         handles_len = len(self.driver.window_handles)
         if handles_len > 1:
             self.driver.switch_to.window(self.driver.window_handles[-1])
-

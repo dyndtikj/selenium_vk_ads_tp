@@ -8,6 +8,7 @@ from ui.pages.base_page import PageNotOpenedExeption
 
 
 CLICK_RETRY = 3
+EMAIL = 'test@mail.ru'
 
 class BaseCase:
     driver = None
@@ -58,7 +59,7 @@ class BaseCase:
     def create_cabinet(self):
         registration_page = RegistrationPage(self.driver)
         
-        data = {'email': 'test@mail.ru'}
+        data = {'email': EMAIL}
         campaign_page = registration_page.create_cabinet(data)
         
         return campaign_page

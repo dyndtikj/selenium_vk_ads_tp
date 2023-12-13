@@ -41,20 +41,3 @@ class MonetizationPage(BasePage):
 
     def get_success_form(self):
         return self.find(self.locators.MONETIZATION_FORM_SUCCESS_LOCATOR)
-
-
-    # def is_opened(self, timeout=15):
-    #     Set s= self.driver.window_handles
-    #
-    #     while (ite.hasNext())
-    #         {
-    #             String
-    #         popupHandle = ite.next().toString();
-    #         if (!popupHandle.contains(mwh))
-    #         {
-    #         driver.switchTo().window(popupHandle);
-    #         / ** /here you can perform operation in pop-up window **
-    #         // After finished your operation in pop-up just select the main window again
-    #         driver.switchTo().window(mwh);
-    #         }
-    #         }
