@@ -30,7 +30,7 @@ class TestCampaign(BaseCase):
         campaign_page = CampaignPage(self.driver)
         data = self.get_campaign_data(repo_root)
         campaign_page.create_campaign(data)
-        campaign_name = f'Кампания {utuls.get_today()}'
+        campaign_name = f'Кампания {utils.get_today()}'
         ind, _ = campaign_page.find_ind_campaign_by_name(campaign_name)
         assert ind != -1
 
@@ -42,7 +42,7 @@ class TestCampaign(BaseCase):
         files = self.get_campaign_data(repo_root)
 
         campaign_page.create_campaign(files)
-        campaign_name = f'Кампания {utuls.get_today()}'
+        campaign_name = f'Кампания {utils.get_today()}'
 
         campaign_page.delete_campaign(campaign_name)
         self.driver.refresh()
