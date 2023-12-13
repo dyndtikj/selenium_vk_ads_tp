@@ -3,7 +3,7 @@ import time
 from base import BaseCase
 from ui.fixtures import *
 from ui.pages.campaign_page import CampaignPage, GroupPage, AdvertisementPage
-import utuls
+import utils
 
 
 class TestCampaign(BaseCase):
