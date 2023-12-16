@@ -12,10 +12,10 @@ pip install -r requirements.txt
 Создать .env файл формата:
 
 ```
-EMAIL_ACCOUNT=test@test.com
+EMAIL_ACCOUNT=test_test@mail.ru
 PASSWORD_ACCOUNT=test_pw
 ```
-За валидными данными можно написать в личку тг: @dyndtikj
+Регистрация на сайте возможна только через О2 и был выбран почтовый сервис mail.ru
 
 ## Запуск
 ```bash
